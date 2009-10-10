@@ -1,0 +1,7 @@
+/**
+*common.js
+*/
+
+function common(){
+
+}
