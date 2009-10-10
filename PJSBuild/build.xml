@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+	<build>
+		<source>
+			<add>examples/common.js</add>
+			<add>examples/user/check.js</add>
+			<add>examples/user/xor.js</add>
+			<to>build/demo1.js</to>
+		</source>
+		<source>
+			<add>examples/common.js</add>
+			<add>examples/admin/tree.js</add>
+			<add>examples/user/check.js</add>
+			<to>build/demo2.js</to>
+		</source>
+	</build>

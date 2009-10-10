@@ -1,0 +1,6 @@
+/**
+*check.js
+*
+*/
+
+var check = {};
