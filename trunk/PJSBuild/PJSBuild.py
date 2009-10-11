@@ -1,3 +1,7 @@
+###
+#Author : xspider.org@gmail.com
+#Date : 2009-10-10
+###
 import os
 import xml.dom.minidom
 from xml.dom.minidom import Node
