@@ -1,6 +1,7 @@
 ###
-#Author : xspider.org@gmail.com
-#Date : 2009-10-10
+# @Author : xspider.org@gmail.com
+# @Date : 2009-10-10
+#
 ###
 import os
 import xml.dom.minidom
@@ -9,7 +10,7 @@ from xml.dom.minidom import Node
 ##############################################
 def parseXmlFile( path ):
 
-    xmlFilePath = path + '\\build.xml'
+    xmlFilePath = path + '/build.xml'
 
     if( os.path.isfile( xmlFilePath ) == False):
         
@@ -36,9 +37,9 @@ def parseNode( nodeElement,path ):
     
     for node in nodeElement.getElementsByTagName( 'add' ):
         
-        addFile.append( node.firstChild.nodeValue.replace('/','\\') )
+        addFile.append( node.firstChild.nodeValue )
 
-    toFile = nodeElement.getElementsByTagName( 'to' )[ 0 ].firstChild.nodeValue.replace('/','\\')
+    toFile = nodeElement.getElementsByTagName( 'to' )[ 0 ].firstChild.nodeValue
 
     if ( ( toFile == '') or ( len( addFile ) == 0 ) ):
 
@@ -49,7 +50,7 @@ def parseNode( nodeElement,path ):
 ##############################################
 def createBuildFile( add, to, path ):
 
-    toFile = path + '\\' + to
+    toFile = path + '/' + to
 
     toDir = os.path.dirname( toFile )
 
@@ -57,11 +58,11 @@ def createBuildFile( add, to, path ):
         
         os.makedirs(  toDir )
     
-    toFileHand = open( path + '\\' + to, 'w' )
+    toFileHand = open( path + '/' + to, 'w' )
 
     for addFile in add:
 
-        sourceFile = path + '\\' + addFile
+        sourceFile = path + '/' + addFile
 
         if ( os.path.isfile( sourceFile ) == False) :
 
@@ -78,6 +79,6 @@ def createBuildFile( add, to, path ):
 ##############################################
 def initBuild():
     
-    parseXmlFile( os.path.abspath( '.' ) )
+    parseXmlFile( os.path.abspath( '.' ).replace( '\\', '/' ) )
 
 initBuild()
