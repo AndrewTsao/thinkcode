@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"><head>
+
+
+<title>Compatibility Master Table</title>
+<link rel="stylesheet" href="images/quirksmode.css">
+<link rel="up" href="http://www.quirksmode.org/home.shtml">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="images/quirksmode.js"></script><style>body {padding-top: 161px;}</style>
+
+<script type="text/javascript">
+
+function init() {
+	document.getElementById('updates').onclick = getUpdates;
+}
+
+var linkArray = [];
+
+function getUpdates() {
+	var links = document.getElementById('compTable').getElementsByTagName('a');
+	for (var i=0;i<links.length;i++) {
+		linkArray.push(links[i]);
+	}
+	getNextLink();
+	var p = document.getElementById('updatesP');
+	p.parentNode.removeChild(p);
+	return false;
+}
+
+function getNextLink() {
+	sendRequest(linkArray[0].href,doNextLink);
+//	document.getElementById('pagecount').innerHTML = linkArray.length - 1;
+}
+
+function doNextLink(req) {
+	var tmp = document.createElement('div');
+	tmp.innerHTML = req.responseText;
+	var spans = tmp.getElementsByTagName('span');
+	for (var i=0;i<spans.length;i++) {
+		if (spans[i].className.indexOf('lastUpdate') == -1) continue;
+		var updateP = document.createElement('p');
+		var updateText = 'Last major update on<br />' + spans[i].firstChild.nodeValue;
+		updateP.innerHTML = updateText;
+		linkArray[0].parentNode.parentNode.appendChild(updateP);
+		break;
+	}
+	linkArray.shift();
+	if (linkArray.length)
+		getNextLink();
+}
+
+</script>
+</head><body style="padding-top: 30px;">
+
+
+
+
+<!--[if lte IE 6]>
+  <p class="ie6"><strong>IE6?</strong> Really? Isn&#8217;t it time to <a href="/upgrade.html">upgrade to a better browser</a>? 
+  (Unless you&#8217;re here for testing purposes, of course.)</p>
+<![endif]-->
+
+
+<h2 id="top">兼容列表</h2>
+
+<p class="tagline">多种浏览器的存在对于前端开来说是一个噩梦 — Sartre</p>
+
+<div style="top: 186px; left: 0px;" id="header"><div id="TOC"><div id="innertoc"><span id="contentheader">show page contents</span><div><a href="#top" class="page">Top</a><a href="#link1" class="page">Other resources</a></div></div></div>
+<div id="siteNav">
+	<span id="menuLink">show site navigation</span>
+	<p id="waitMessageNav">Loading site navigation; please wait...</p>
+</div></div>
+
+
+
+<table class="compatibility" id="compTable" cellspacing="7">
+
+	<col>
+	<col class="IE" span="5">
+	<col class="FF" span="3">
+	<col class="Saf" span="3">
+	<col class="Chrome" span="2">
+	<col class="Op" span="2">
+	<col class="Rest" span="1">
+
+	<tbody><tr class="compheader">
+		<th>选择器</th>
+		<th>IE 5.5</th>
+		<th>IE 6</th>
+		<th>IE 7</th>
+		<th>IE8 as IE7</th>
+		<th>IE8 as IE8</th>
+		<th>FF 2</th>
+		<th>FF 3.0</th>
+		<th>FF 3.5</th>
+		<th>Saf 3.0 Win</th>
+		<th>Saf 3.1 Win</th>
+		<th>Saf 4.0 Win</th>
+		<th>Chrome 1</th>
+		<th>Chrome 2</th>
+		<th>Opera 9.62</th>
+		<th>Opera 10b</th>
+		<th>Konqueror 3.5.7</th>
+	</tr>
+
+<!-- CSS 2 -->
+
+<tr>
+	<td id="t00" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/css/contents.html">CSS 2</a></div></td>
+	<td title="IE 5.5; IE 6" class="comp incorrect" colspan="2">报错</td>
+	<td title="IE 7; IE8 as IE7" class="comp 不完全<wbr>支持" colspan="2">不完全<br>支持</td>
+	<td title="IE8 as IE8" class="comp yes">支持</td>
+	<td title="FF 2; FF 3.0" class="comp yes" colspan="2">支持</td>
+	<td title="FF 3.5" class="comp test">有待测试</td>
+	<td title="Saf 3.0 Win; Saf 3.1 Win" class="comp yes" colspan="2">支持</td>
+	<td title="Saf 4.0 Win" class="comp test">有待测试</td>
+	<td title="Chrome 1; Chrome 2" class="comp yes" colspan="2">支持</td>
+	<td title="Opera 9.62" class="comp yes" colspan="1">支持</td>
+	<td title="Opera 10b" class="comp test">有待测试</td>
+	<td title="Konqueror 3.5.7" class="comp yes">支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>CSS2 已经成为CSS支持的底线，不支持CSS2的浏览器毫无疑问是相当落后的.</p>
+	</td>
+</tr>
+
+<!-- CSS 3 -->
+
+<tr>
+	<td id="t01" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/css/contents.html">CSS 3</a></div></td>
+	<td title="IE 5.5; IE 6; IE 7; IE8 as IE7" class="comp minimal" colspan="4">极少支持</td>
+	<td title="IE8 as IE8" class="comp 不完全<wbr>支持">不完全<br>支持</td>
+	<td title="FF 2; FF 3.0" class="comp almost" colspan="2">几乎全支持</td>
+	<td title="FF 3.5" class="comp test">有待测试</td>
+	<td title="Saf 3.0 Win" class="comp 不完全<wbr>支持">不完全<br>支持</td>
+	<td title="Saf 3.1 Win" class="comp almost" colspan="1">几乎全支持</td>
+	<td title="Saf 4.0 Win" class="comp test">有待测试</td>
+	<td title="Chrome 1; Chrome 2" class="comp almost" colspan="2">几乎全支持</td>
+	<td title="Opera 9.62" class="comp almost" colspan="1">几乎全支持</td>
+	<td title="Opera 10b" class="comp test">有待测试</td>
+	<td title="Konqueror 3.5.7" class="comp almost">几乎全支持</td>
+
+
+</tr>
+<tr>
+	<td colspan="25">
+	<p>这些兼容信息是仅基于我测试过的CSS3模块，并非对所有的CSS3有证.</p>
+	</td>
+</tr>
+
+<!-- 节点处理-->
+
+<tr>
+	<td id="t02" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/w3c_core.html">DOM Core</a></div>
+	节点处理
+	</td>
+	<td class="comp yes" colspan="5">支持</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp yes" colspan="1">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes">支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>W3C 的DOM 核心模块定义如何存取,操作XML文档。XML文档是一些结构良好的HTML文档，所以这些属性和方法同样可以完全重写任何HTML页面，只要你愿意。</p>
+
+	<p>在这里你会找到关于如何获取元素，如何创建新元素，如何读取节点信息并且如何去改变文档结构的详细信息。</p>
+	</td>
+</tr>
+
+<!-- HTML TAG MANIPULATION -->
+
+<tr>
+	<td id="t03" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/w3c_html.html">DOM HTML</a></div>
+	HTML 标签处理
+	</td>
+	<td title="IE 5.5; IE 6; IE 7; IE8 as IE7; IE8 as IE8" class="comp yes" colspan="5">支持</td>
+	<td title="FF 2; FF 3.0" class="comp yes" colspan="2">支持</td>
+	<td title="FF 3.5" class="comp test">有待测试</td>
+	<td title="Saf 3.0 Win; Saf 3.1 Win; Saf 4.0 Win" class="comp yes" colspan="3">支持</td>
+	<td title="Chrome 1; Chrome 2" class="comp yes" colspan="2">支持</td>
+	<td title="Opera 9.62; Opera 10b" class="comp yes" colspan="2">支持</td>
+	<td title="Konqueror 3.5.7" class="comp yes">支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>虽然从广义上来讲，HTML文档是XML文档，但是他们也有很多XML不具有的特性，W3C DOM HTML模块定义了那些特例并且告诉你如何处理这些情况</p>
+
+	<p>在这里你会找到如何得到并和设置HTML元素属性和方法的详细信息，比如通过className或者id来获取，innerHTML属性对于任何的DOM script都极为重要。 </p>
+	</td>
+</tr>
+
+<!-- 样式表处理-->
+
+<tr>
+	<td id="t04" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/w3c_css.html">DOM CSS</a></div>
+	样式表处理
+	</td>
+	<td class="comp yes" colspan="3">支持</td>
+	<td class="comp test" colspan="2">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="1">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes">支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>样式表也是一种文档，W3C的 DOM CSS模块访问样式表并且允许你修改样式表</p>
+
+	<p>本模块包含一些浏览器并不兼容，但是确实非常有创意的可爱玩意。W3C和微软定义了一些不同的简单方法和数组
+	<a href="http://www.quirksmode.org/js/support.html">对象检测机制</a> 可以避免你抛锚在这些问题上</p>
+	</td>
+</tr>
+
+<!-- 遍历 -->
+
+<tr>
+	<td id="t05" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/w3c_Traversal.html">DOM 遍历</a></div>
+	获得元素节点；确认文本和注释节点在你的脚本中不会很混乱
+	</td>
+	<td title="IE 5.5; IE 6; IE 7; IE8 as IE7; IE8 as IE8" class="comp no" colspan="5">不支持</td>
+	<td title="FF 2; FF 3.0" class="comp no" colspan="2">不支持</td>
+	<td title="FF 3.5" class="comp yes">支持</td>
+	<td title="Saf 3.0 Win" class="comp no">不支持</td>
+	<td title="Saf 3.1 Win" class="comp untestable">不可测试</td>
+	<td title="Saf 4.0 Win" class="comp yes">支持</td>
+	<td title="Chrome 1" class="comp untestable">不可测试</td>
+	<td title="Chrome 2" class="comp yes">支持</td>
+	<td title="Opera 9.62; Opera 10b" class="comp yes" colspan="2">支持</td>
+	<td title="Konqueror 3.5.7" class="comp test">有待测试</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>有用的属性应该被放在DOM中的首要位置 </p>
+	</td>
+</tr>
+
+<!-- EVENTS -->
+
+<tr>
+	<td id="t06" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/events/index.html">DOM Events</a></div>
+	</td>
+	<td title="IE 5.5; IE 6; IE 7" class="comp yes" colspan="3">支持</td>
+	<td title="IE8 as IE7; IE8 as IE8" class="comp test" colspan="2">有待测试</td>
+	<td title="FF 2; FF 3.0" class="comp yes" colspan="2">支持</td>
+	<td title="FF 3.5" class="comp test">有待测试</td>
+	<td title="Saf 3.0 Win; Saf 3.1 Win" class="comp yes" colspan="2">支持</td>
+	<td title="Saf 4.0 Win" class="comp test">有待测试</td>
+	<td title="Chrome 1" class="comp yes">支持</td>
+	<td title="Chrome 2" class="comp test">有待测试</td>
+	<td title="Opera 9.62" class="comp yes" colspan="1">支持</td>
+	<td title="Opera 10b" class="comp test">有待测试</td>
+	<td title="Konqueror 3.5.7" class="comp almost">几乎全支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p> 测试过的所有的浏览器都完全支持事件</p>
+	<ul>
+		<li class="">Konqueror 不支持少数事件.</li>
+	</ul>
+	</td>
+</tr>
+
+<!-- EVENT MANIPULATION
+
+<tr>
+	<td class="declaration" rowspan="2">
+	<div class="name"><a href="/dom/w3c_events.html">Event handling</a></div>
+	Event manipulation
+	</td>
+	<td class="comp" colspan="5">?</td>
+	<td class="comp" colspan="3">?</td>
+	<td class="comp" colspan="3">?</td>
+	<td class="comp">?</td>
+	<td class="comp" colspan="2">?</td>
+	<td class="comp">?</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>The W3C DOM Events module specifies how events are being handled. The MS DOM events module does the
+	same, but in a different way. These tables detail both Event modules and also Netscape 4's old
+	system.</p>
+	<p>See the <a href="../js/introevents.html">Introduction to events</a> and subsequent pages for
+	more information.</p>
+	</td>
+</tr>
+ -->
+
+<!-- CSSOM -->
+
+<tr>
+	<td id="t07" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/w3c_cssom.html">CSS 对象模型视图</a></div>
+	 元素尺寸，鼠标坐标，以及其他约定。
+	</td>
+	<td class="comp almost" colspan="5">几乎全支持</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp yes" colspan="1">支持</td>
+	<td class="comp test">有待测试</td>
+	<td class="comp yes">支持</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>本规则包含很多所有浏览器都支持但是至今未列入W3C规范的古老属性</p>
+	</td>
+</tr>
+
+<!-- HTML5 -->
+
+<tr>
+	<td id="t08" class="declaration" rowspan="2">
+	<div class="name"><a href="http://www.quirksmode.org/dom/html5.html">HTML5</a></div>
+	HTML5 特性
+	</td>
+	<td title="IE 5.5; IE 6; IE 7" class="comp no" colspan="3">不支持</td>
+	<td title="IE8 as IE7; IE8 as IE8" class="comp yes" colspan="2">支持</td>
+	<td title="FF 2; FF 3.0" class="comp no" colspan="2">不支持</td>
+	<td title="FF 3.5" class="comp test">有待测试</td>
+	<td title="Saf 3.0 Win" class="comp no" colspan="1">不支持</td>
+	<td title="Saf 3.1 Win" class="comp untestable">不可测试</td>
+	<td title="Saf 4.0 Win" class="comp yes" colspan=ff"1">支持</td>
+	<td title="Chrome 1" class="comp untestable">不可测试</td>
+	<td title="Chrome 2" class="comp no" colspan="1">不支持</td>
+	<td title="Opera 9.62; Opera 10b" class="comp no" colspan="2">不支持</td>
+	<td title="Konqueror 3.5.7" class="comp test">有待测试</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>以上兼容信息仅仅征对我所测试过的HTML5特性，并未对所有HTML5兼容性有证。</p>
+	<p>测试面将会在以后逐渐扩大</p>
+	</td>
+</tr>
+
+
+<!-- RANGE
+
+<tr>
+	<td class="declaration" rowspan="2">
+	<div class="name"><a href="/dom/w3c_range.html">Range</a></div>
+	Range objects
+	</td>
+	<td class="comp alternative" colspan="3">Microsoft model</td>
+	<td class="comp ">?</td>
+	<td class="comp yes" colspan="2">支持</td>
+	<td class="comp yes">支持</td>
+	<td class="comp ">?</td>
+	<td class="comp yes">支持</td>
+	<td class="comp ">?</td>
+</tr>
+<tr>
+	<td colspan="25">
+	<p>Range objects are created when the user selects text. It's also possible to create your own range.</p>
+	<p>Unfortunately the Microsoft model is distinctly worse than, as well as completely different from,
+	the W3C model.</p>
+	</td>
+</tr>
+-->
+	<tr class="compheader">
+		<th>Selector</th>
+		<th>IE 5.5</th>
+		<th>IE 6</th>
+		<th>IE 7</th>
+		<th>IE8 as IE7</th>
+		<th>IE8 as IE8</th>
+		<th>FF 2</th>
+		<th>FF 3.0</th>
+		<th>FF 3.5</th>
+		<th>Saf 3.0 Win</th>
+		<th>Saf 3.1 Win</th>
+		<th>Saf 4.0 Win</th>
+		<th>Chrome 1</th>
+		<th>Chrome 2</th>
+		<th>Opera 9.62</th>
+		<th>Opera 10b</th>
+		<th>Konqueror 3.5.7</th>
+	</tr>
+</tbody><caption><select class="contents"><option selected="selected" value="">快速导航</option><option value="t00">CSS 2</option><option value="t01">CSS 3</option><option value="t02">DOM 核心</option><option value="t03">DOM HTML</option><option value="t04">DOM CSS</option><option value="t05">DOM 遍历</option><option value="t06">DOM 事件</option><option value="t07">CSS 文档模型视图</option><option value="t08">HTML5</option></select>查看 <a href="key.html">图例</a>可以帮助你更快了解这张表</caption></table>
+
+
+
+</body></html>
