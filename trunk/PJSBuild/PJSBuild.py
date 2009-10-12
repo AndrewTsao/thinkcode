@@ -1,11 +1,14 @@
-###
-# @Author : xspider.org@gmail.com
-# @Date : 2009-10-10
-#
-###
+# coding=utf-8
+#Python 2.5 or 2.63#
 import os
+import sys
+import codecs
 import xml.dom.minidom
 from xml.dom.minidom import Node
+reload( sys )
+sys.setdefaultencoding( 'utf-8' )
+
+
 
 ##############################################
 def parseXmlFile( path ):
@@ -58,7 +61,7 @@ def createBuildFile( add, to, path ):
         
         os.makedirs(  toDir )
     
-    toFileHand = open( path + '/' + to, 'w' )
+    toFileHand = open( path + '/' + to, 'wb' )
 
     for addFile in add:
 
@@ -68,9 +71,15 @@ def createBuildFile( add, to, path ):
 
             break
 
-        tmpHand = open( sourceFile )
+        tmpHand = file( sourceFile,'rb' )
 
-        toFileHand.write( tmpHand.read() + '\n' )
+        lines = tmpHand.readlines()
+
+        for line in lines :
+
+            toFileHand.write( line )
+
+        toFileHand.write( '\n' )
 
         tmpHand.close()
 
