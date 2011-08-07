@@ -1,13 +1,17 @@
-#summary One-sentence summary of this page.
+EscapeSequence ::
+CharacterEscapeSequence 
+OctalEscapeSequence 
+HexEscapeSequence 
+UnicodeEscapeSequence
 
-= Introduction =
+OctalEscapeSequence ::
+OctalDigit [lookahead ∉ DecimalDigit] 
+ZeroToThree OctalDigit [lookahead ∉ DecimalDigit] 
+FourToSeven OctalDigit 
+ZeroToThree OctalDigit OctalDigit
 
-Add your content here.
+ZeroToThree :: one of
+0 1 2 3
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+FourToSeven :: one of
+4 5 6 7
