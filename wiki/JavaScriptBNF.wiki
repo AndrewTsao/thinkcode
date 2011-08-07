@@ -1,8 +1,8 @@
 ===EscapeSequence ::===
-CharacterEscapeSequence 
-OctalEscapeSequence 
-HexEscapeSequence 
-UnicodeEscapeSequence
+    CharacterEscapeSequence 
+    OctalEscapeSequence 
+    HexEscapeSequence 
+    UnicodeEscapeSequence
 
 OctalEscapeSequence ::
 OctalDigit [lookahead ∉ DecimalDigit] 
